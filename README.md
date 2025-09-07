@@ -225,26 +225,4 @@ The app expects the following API endpoints:
 4. Create page components in `src/pages/`
 5. Add routes in `src/routes/AppRoutes.jsx`
 
-### Code Style
 
-- Use `.jsx` files for all React components
-- Follow React functional component patterns with hooks
-- Use TailwindCSS for styling
-- Implement proper error handling and loading states
-- Use TypeScript-style prop validation with PropTypes if needed
-
-## 📝 License
-
-This project is licensed under the MIT License.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
-
-## 📞 Support
-
-For support and questions, please open an issue in the repository.
