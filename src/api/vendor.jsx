@@ -2,7 +2,7 @@ import api from './config.jsx';
 
 export const vendorAPI = {
   create: async (vendorData) => {
-    const response = await api.post('/vendors/', vendorData);
+    const response = await api.post('/vendors/create/', vendorData);
     return response.data;
   },
 

@@ -25,6 +25,23 @@ const BusinessInfoForm = ({ formData, errors, updateFormData }) => {
           <p className="mt-1 text-sm text-red-600">{errors.business_name}</p>
         )}
       </div>
+      <div>
+        <label htmlFor="business_email" className="block text-sm font-medium text-secondary-700">
+          Business Email *
+        </label>
+        <input
+          type="text"
+          id="business_email"
+          name="business_email"
+          value={formData.business_email}
+          onChange={handleChange}
+          className={`input-field mt-1 ${errors.business_email ? 'border-red-500' : ''}`}
+          placeholder="Enter your business email"
+        />
+        {errors.business_email && (
+          <p className="mt-1 text-sm text-red-600">{errors.business_email}</p>
+        )}
+      </div>
 
       <div>
         <label htmlFor="business_type" className="block text-sm font-medium text-secondary-700">
@@ -38,14 +55,15 @@ const BusinessInfoForm = ({ formData, errors, updateFormData }) => {
           className={`input-field mt-1 ${errors.business_type ? 'border-red-500' : ''}`}
         >
           <option value="">Select business type</option>
-          <option value="restaurant">Restaurant</option>
-          <option value="retail">Retail Store</option>
+          <option value="clothing">Clothing</option>
+          <option value="electronics">Electronics</option>
+          <option value="other">Other</option>
+          {/* <option value="retail">Retail Store</option>
           <option value="service">Service Provider</option>
           <option value="manufacturing">Manufacturing</option>
           <option value="technology">Technology</option>
           <option value="healthcare">Healthcare</option>
-          <option value="education">Education</option>
-          <option value="other">Other</option>
+          <option value="education">Education</option> */}
         </select>
         {errors.business_type && (
           <p className="mt-1 text-sm text-red-600">{errors.business_type}</p>
@@ -71,20 +89,20 @@ const BusinessInfoForm = ({ formData, errors, updateFormData }) => {
       </div>
 
       <div>
-        <label htmlFor="phone" className="block text-sm font-medium text-secondary-700">
-          Phone Number *
+        <label htmlFor="business_phone" className="block text-sm font-medium text-secondary-700">
+          Business Phone Number *
         </label>
         <input
           type="tel"
-          id="phone"
-          name="phone"
-          value={formData.phone}
+          id="business_phone"
+          name="business_phone"
+          value={formData.business_phone}
           onChange={handleChange}
-          className={`input-field mt-1 ${errors.phone ? 'border-red-500' : ''}`}
-          placeholder="Enter your phone number"
+          className={`input-field mt-1 ${errors.business_phone ? 'border-red-500' : ''}`}
+          placeholder="Enter your Business phone number"
         />
-        {errors.phone && (
-          <p className="mt-1 text-sm text-red-600">{errors.phone}</p>
+        {errors.business_phone && (
+          <p className="mt-1 text-sm text-red-600">{errors.business_phone}</p>
         )}
       </div>
 

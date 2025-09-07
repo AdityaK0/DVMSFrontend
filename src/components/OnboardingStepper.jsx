@@ -10,8 +10,9 @@ const OnboardingStepper = () => {
   const [formData, setFormData] = useState({
     business_name: '',
     business_type: '',
+    business_email:'',
     description: '',
-    phone: '',
+    business_phone: '',
     website: '',
     street: '',
     city: '',
@@ -45,9 +46,10 @@ const OnboardingStepper = () => {
 
     if (currentStep === 1) {
       if (!formData.business_name.trim()) newErrors.business_name = 'Business name is required';
+      if (!formData.business_email.trim()) newErrors.business_email = 'Business email is required';
       if (!formData.business_type.trim()) newErrors.business_type = 'Business type is required';
       if (!formData.description.trim()) newErrors.description = 'Description is required';
-      if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
+      if (!formData.business_phone.trim()) newErrors.business_phone = 'Business Phone number is required';
     } else if (currentStep === 2) {
       if (!formData.street.trim()) newErrors.street = 'Street address is required';
       if (!formData.city.trim()) newErrors.city = 'City is required';

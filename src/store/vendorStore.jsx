@@ -10,7 +10,6 @@ export const useVendorStore = create(
       error: null,
       isOnboarded: false,
 
-      // Actions
       createVendor: async (vendorData) => {
         set({ isLoading: true, error: null });
         try {
