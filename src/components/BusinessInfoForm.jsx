@@ -71,20 +71,20 @@ const BusinessInfoForm = ({ formData, errors, updateFormData }) => {
       </div>
 
       <div>
-        <label htmlFor="description" className="block text-sm font-medium text-secondary-700">
+        <label htmlFor="business_description" className="block text-sm font-medium text-secondary-700">
           Business Description *
         </label>
         <textarea
-          id="description"
-          name="description"
+          id="business_description"
+          name="business_description"
           rows={4}
-          value={formData.description}
+          value={formData.business_description}
           onChange={handleChange}
-          className={`input-field mt-1 ${errors.description ? 'border-red-500' : ''}`}
+          className={`input-field mt-1 ${errors.business_description ? 'border-red-500' : ''}`}
           placeholder="Describe your business and what you offer"
         />
-        {errors.description && (
-          <p className="mt-1 text-sm text-red-600">{errors.description}</p>
+        {errors.business_description && (
+          <p className="mt-1 text-sm text-red-600">{errors.business_description}</p>
         )}
       </div>
 

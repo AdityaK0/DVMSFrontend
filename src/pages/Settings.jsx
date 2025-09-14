@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import ProfileForm from '../components/ProfileForm.jsx';
 import PreferencesForm from '../components/PreferencesForm.jsx';
+import { useAuthStore } from '../store/authStore';
+import { useVendorStore } from '../store/vendorStore';
 
 const Settings = () => {
+  const user = useAuthStore((state) => state.user);
+  const vendorProfile = useVendorStore((state) => state.vendorProfile);
   const [activeTab, setActiveTab] = useState('profile');
 
   return (
@@ -40,7 +44,7 @@ const Settings = () => {
       </div>
 
       {/* Tab Content */}
-      {activeTab === 'profile' && <ProfileForm />}
+      {activeTab === 'profile' && <ProfileForm user={user} vendorProfile={vendorProfile} />}
       {activeTab === 'preferences' && <PreferencesForm />}
     </div>
   );

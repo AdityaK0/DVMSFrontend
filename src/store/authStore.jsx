@@ -1,9 +1,10 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { authAPI } from "../api/auth.jsx";
+import { useVendorStore } from "./vendorStore.jsx";
 import toast from "react-hot-toast";   // ✅ add toast
 
-function extractErrorMessage(error) {
+export function extractErrorMessage(error) {
   if (error.response?.data) {
     const data = error.response.data;
 
@@ -31,6 +32,7 @@ export const useAuthStore = create(
       refreshToken: null,
       isLoading: false,
       error: null,
+      vendor_profile:null,
 
       // Actions
       login: async (credentials) => {
@@ -44,9 +46,14 @@ export const useAuthStore = create(
             refreshToken: response.refresh,
             isLoading: false,
             error: null,
+
+            vendor_profile:response.user.vendor_profile,
           });
+
           localStorage.setItem("authToken", response.access);
           localStorage.setItem("refreshToken", response.refresh);
+          useVendorStore.getState().setVendorProfile(response.user.vendor_profile);
+
 
           toast.success("Login successful 🎉");   // ✅ success toast
           return response;

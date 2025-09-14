@@ -2,6 +2,7 @@ import axios from "axios";
 import { useAuthStore } from "../store/authStore"; // adjust path
 
 const API_BASE_URL = "http://localhost:8000/api/";
+export const publicAPI = axios.create({ baseURL: API_BASE_URL });
 
 const api = axios.create({
   baseURL: API_BASE_URL,

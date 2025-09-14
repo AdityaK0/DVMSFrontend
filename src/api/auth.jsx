@@ -1,13 +1,14 @@
 import api from './config.jsx';
+import { publicAPI } from './config.jsx';
 
 export const authAPI = {
   signup: async (userData) => {
-    const response = await api.post('/auth/register/', userData);
+    const response = await publicAPI.post('/auth/register/', userData);
     return response.data;
   },
 
   login: async (credentials) => {
-    const response = await api.post('/auth/login/', credentials);
+    const response = await publicAPI.post('/auth/login/', credentials);
     return response.data;
   },
 

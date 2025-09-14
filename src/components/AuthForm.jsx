@@ -5,6 +5,8 @@ import { useAuthStore } from '../store/authStore.jsx';
 const AuthForm = ({ mode = 'login' }) => {
   const [formData, setFormData] = useState({
     username: '',
+    first_name:'',
+    last_name:'',
     email: '',
     password: '',
     confirmPassword: '',
@@ -69,6 +71,7 @@ const AuthForm = ({ mode = 'login' }) => {
 
     try {
       if (mode === 'login') {
+
         await login({
           username: formData.username,
           password: formData.password,
@@ -77,6 +80,8 @@ const AuthForm = ({ mode = 'login' }) => {
         await signup({
           username: formData.username,
           email: formData.email,
+          first_name:formData.first_name,
+          last_name:formData.last_name,
           password: formData.password,
           password_confirm: formData.confirmPassword,
         });
@@ -128,6 +133,45 @@ const AuthForm = ({ mode = 'login' }) => {
           )}
         </div>
       )}
+      {mode === 'signup' && (
+      <div>
+        <label htmlFor="first_name" className="block text-sm font-medium text-secondary-700">
+          First Name
+        </label>
+        <input
+          id="first_name"
+          name="first_name"
+          type="text"
+          required
+          value={formData.first_name}
+          onChange={handleChange}
+          className={`input-field mt-1 ${errors.first_name ? 'border-red-500' : ''}`}
+          placeholder="Enter your first Name"
+        />
+        {errors.first_name && (
+          <p className="mt-1 text-sm text-red-600">{errors.first_name}</p>
+        )}
+      </div>)}
+      {mode === 'signup' && (
+      <div>
+        <label htmlFor="last_name" className="block text-sm font-medium text-secondary-700">
+          Last Name
+        </label>
+        <input
+          id="last_name"
+          name="last_name"
+          type="text"
+          required
+          value={formData.last_name}
+          onChange={handleChange}
+          className={`input-field mt-1 ${errors.last_name ? 'border-red-500' : ''}`}
+          placeholder="Enter your Last Name"
+        />
+        {errors.last_name && (
+          <p className="mt-1 text-sm text-red-600">{errors.last_name}</p>
+        )}
+      </div>)}
+
 
       <div>
         <label htmlFor="password" className="block text-sm font-medium text-secondary-700">

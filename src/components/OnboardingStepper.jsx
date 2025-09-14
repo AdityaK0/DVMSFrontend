@@ -11,7 +11,7 @@ const OnboardingStepper = () => {
     business_name: '',
     business_type: '',
     business_email:'',
-    description: '',
+    business_description: '',
     business_phone: '',
     website: '',
     street: '',
@@ -19,6 +19,8 @@ const OnboardingStepper = () => {
     state: '',
     zip_code: '',
     country: '',
+    latitude:null,
+    longitude:null,
     logo: null,
   });
   const [errors, setErrors] = useState({});
@@ -48,7 +50,7 @@ const OnboardingStepper = () => {
       if (!formData.business_name.trim()) newErrors.business_name = 'Business name is required';
       if (!formData.business_email.trim()) newErrors.business_email = 'Business email is required';
       if (!formData.business_type.trim()) newErrors.business_type = 'Business type is required';
-      if (!formData.description.trim()) newErrors.description = 'Description is required';
+      if (!formData.business_description.trim()) newErrors.business_description = 'Business Description is required';
       if (!formData.business_phone.trim()) newErrors.business_phone = 'Business Phone number is required';
     } else if (currentStep === 2) {
       if (!formData.street.trim()) newErrors.street = 'Street address is required';
@@ -135,7 +137,7 @@ const OnboardingStepper = () => {
                 }`}>
                   {step.title}
                 </p>
-                <p className="text-xs text-secondary-500">{step.description}</p>
+                <p className="text-xs text-secondary-500">{step.business_description}</p>
               </div>
               {index < steps.length - 1 && (
                 <div className={`flex-1 h-0.5 mx-4 ${

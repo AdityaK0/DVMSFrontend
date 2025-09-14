@@ -9,10 +9,10 @@ const ProfileForm = () => {
   const [formData, setFormData] = useState({
     business_name: '',
     business_type: '',
-    description: '',
+    business_description: '',
     phone: '',
     website: '',
-    street: '',
+    street_address: '',
     city: '',
     state: '',
     zip_code: '',
@@ -26,17 +26,19 @@ const ProfileForm = () => {
       setFormData({
         business_name: vendorProfile.business_name || '',
         business_type: vendorProfile.business_type || '',
-        description: vendorProfile.description || '',
-        phone: vendorProfile.phone || '',
+        business_description: vendorProfile.business_description || '',
+        phone: vendorProfile.business_phone || '',
         website: vendorProfile.website || '',
-        street: vendorProfile.street || '',
-        city: vendorProfile.city || '',
-        state: vendorProfile.state || '',
-        zip_code: vendorProfile.zip_code || '',
-        country: vendorProfile.country || '',
+        street_address: vendorProfile.address_details.street_address || '',
+        city: vendorProfile.address_details.city || '',
+        state: vendorProfile.address_details.state || '',
+        zip_code: vendorProfile.address_details.zip_code || '',
+        country: vendorProfile.address_details.country || '',
       });
     }
   }, [vendorProfile]);
+
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -58,9 +60,9 @@ const ProfileForm = () => {
 
     if (!formData.business_name.trim()) newErrors.business_name = 'Business name is required';
     if (!formData.business_type.trim()) newErrors.business_type = 'Business type is required';
-    if (!formData.description.trim()) newErrors.description = 'Description is required';
+    if (!formData.business_description.trim()) newErrors.business_description = 'Description is required';
     if (!formData.phone.trim()) newErrors.phone = 'Phone number is required';
-    if (!formData.street.trim()) newErrors.street = 'Street address is required';
+    if (!formData.street_address.trim()) newErrors.street_address = 'Street Address address is required';
     if (!formData.city.trim()) newErrors.city = 'City is required';
     if (!formData.state.trim()) newErrors.state = 'State is required';
     if (!formData.zip_code.trim()) newErrors.zip_code = 'ZIP code is required';
@@ -76,9 +78,14 @@ const ProfileForm = () => {
     if (!validateForm()) return;
 
     try {
-      await updateVendor(vendorProfile.id, formData);
-      setSuccess(true);
-      setTimeout(() => setSuccess(false), 3000);
+      if(vendorProfile.id){
+         console.log("Got Vendor Dertails :: ",vendorProfile);
+         
+          await updateVendor(vendorProfile.id, formData);
+          setSuccess(true);
+          setTimeout(() => setSuccess(false), 3000);
+      }
+
     } catch (error) {
       console.error('Error updating profile:', error);
       setErrors({ submit: 'Failed to update profile. Please try again.' });
@@ -142,20 +149,20 @@ const ProfileForm = () => {
             </div>
 
             <div>
-              <label htmlFor="description" className="block text-sm font-medium text-secondary-700">
+              <label htmlFor="business_description" className="block text-sm font-medium text-secondary-700">
                 Business Description *
               </label>
               <textarea
-                id="description"
-                name="description"
+                id="business_description"
+                name="business_description"
                 rows={4}
-                value={formData.description}
+                value={formData.business_description}
                 onChange={handleChange}
-                className={`input-field mt-1 ${errors.description ? 'border-red-500' : ''}`}
+                className={`input-field mt-1 ${errors.business_description ? 'border-red-500' : ''}`}
                 placeholder="Describe your business"
               />
-              {errors.description && (
-                <p className="mt-1 text-sm text-red-600">{errors.description}</p>
+              {errors.business_description && (
+                <p className="mt-1 text-sm text-red-600">{errors.business_description}</p>
               )}
             </div>
 
@@ -200,20 +207,20 @@ const ProfileForm = () => {
             <h4 className="font-medium text-secondary-700">Address Information</h4>
             
             <div>
-              <label htmlFor="street" className="block text-sm font-medium text-secondary-700">
+              <label htmlFor="street_address" className="block text-sm font-medium text-secondary-700">
                 Street Address *
               </label>
               <input
                 type="text"
-                id="street"
-                name="street"
-                value={formData.street}
+                id="street_address"
+                name="street_address"
+                value={formData.street_address}
                 onChange={handleChange}
-                className={`input-field mt-1 ${errors.street ? 'border-red-500' : ''}`}
+                className={`input-field mt-1 ${errors.street_address ? 'border-red-500' : ''}`}
                 placeholder="Enter street address"
               />
-              {errors.street && (
-                <p className="mt-1 text-sm text-red-600">{errors.street}</p>
+              {errors.street_address && (
+                <p className="mt-1 text-sm text-red-600">{errors.street_address}</p>
               )}
             </div>
 
