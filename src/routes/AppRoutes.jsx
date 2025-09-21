@@ -21,7 +21,9 @@ import Events from '../pages/Events.jsx';
 import NewEvent from '../pages/NewEvent.jsx';
 import Messages from '../pages/Messages.jsx';
 import Analytics from '../pages/Analytics.jsx';
+import PortfolioManagement from '../pages/PortfolioManagement.jsx';
 import Settings from '../pages/Settings.jsx';
+
 
 // Components
 import ProtectedRoute from '../components/ProtectedRoute.jsx';
@@ -57,6 +59,7 @@ const AppRoutes = () => {
         <Route path="events/new" element={<NewEvent />} />
         <Route path="messages" element={<Messages />} />
         <Route path="analytics" element={<Analytics />} />
+        <Route path="portfolio-mangement" element={<PortfolioManagement />} />
         <Route path="settings" element={<Settings />} />
       </Route>
 

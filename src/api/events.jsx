@@ -2,6 +2,8 @@ import api from './config.jsx';
 
 export const eventsAPI = {
   getAll: async () => {
+    return []
+    // currently api not integrated that why empty
     const response = await api.get('/events/');
     return response.data;
   },
