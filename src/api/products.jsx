@@ -13,12 +13,16 @@ export const productsAPI = {
   },
 
   getCategories: async () => {
-    const response = await api.get('categories/');
+    const response = await api.get('products/vendor/my-categories/');
     return response.data;
   },
 
   getVendorCatalog: async (vendorId, params = {}) => {
     const response = await api.get(`vendor/${vendorId}/my-products/`, { params });
+    return response.data;
+  },
+  getVendorCategories: async () => {
+    const response = await api.get('categories/vendor/');
     return response.data;
   },
 
@@ -65,13 +69,6 @@ export const productsAPI = {
     });
     return response.data;
   },
-
-  // filter: async (category) => {
-  //   const response = await api.get('products/vendor/filter/', {
-  //     params: { category },
-  //   });
-  //   return response.data;
-  // },
 
     filter: async (filters) => {
     console.log("Sending filters to API:", filters);

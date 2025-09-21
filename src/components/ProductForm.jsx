@@ -26,6 +26,20 @@ const ProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [dragActive, setDragActive] = useState(false);
   const [imagePreview, setImagePreview] = useState([]);
+  const [categories, setCategories] = useState([]);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const data = await productsAPI.getCategories(); 
+        setCategories(data);
+      } catch (err) {
+        console.error("Failed to fetch categories:", err);
+      }
+    };
+
+    fetchCategories();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
@@ -248,7 +262,7 @@ const ProductForm = () => {
                     )}
                   </div>
 
-                  <div>
+                  {/* <div>
                     <label className="block text-sm font-semibold text-gray-700 mb-2">
                       Category *
                     </label>
@@ -266,6 +280,30 @@ const ProductForm = () => {
                       <option value="books">📚 Books</option>
                       <option value="home">🏠 Home & Garden</option>
                       <option value="sports">⚽ Sports</option>
+                    </select>
+                    {errors.category && (
+                      <p className="mt-2 text-sm text-red-600 flex items-center">
+                        <span className="mr-1">⚠</span> {errors.category}
+                      </p>
+                    )}
+                  </div> */}
+
+                  <div>
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">Category *</label>
+                    <select
+                      name="category"
+                      value={formData.category}
+                      onChange={handleChange}
+                      className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 ${
+                        errors.category ? "border-red-500 bg-red-50" : "border-gray-300 hover:border-gray-400"
+                      }`}
+                    >
+                      <option value="">Select category</option>
+                      {categories.map((cat) => (
+                        <option key={cat.id} value={cat.id}>
+                          {cat.name}
+                        </option>
+                      ))}
                     </select>
                     {errors.category && (
                       <p className="mt-2 text-sm text-red-600 flex items-center">
