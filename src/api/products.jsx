@@ -46,6 +46,15 @@ export const productsAPI = {
     return response.data;
   },
 
+  activate_product:async (id, productData) => {
+    const response = await api.patch(`products/vendor/my-products/${id}/activate/`, productData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response
+  },
+
   delete: async (id) => {
     const response = await api.delete(`products/vendor/my-products/${id}/delete/`);
     return response.data;

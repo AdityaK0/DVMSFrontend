@@ -53,6 +53,11 @@ useEffect(() => {
   //     setLoading(false);
   //   }
   // };
+  const handleProductActivate = (id) => {
+    setProducts(prev =>
+      prev.map(p => p.id === id ? { ...p, is_active: true } : p)
+    );
+  };
 
   const fetchProducts = async (page = 1) => {
   try {
@@ -286,7 +291,7 @@ const applyFilters = async () => {
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
+            <ProductCard key={product.id} product={product} onActivate={handleProductActivate}/>
           ))}
 
           
