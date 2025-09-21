@@ -8,7 +8,7 @@ export const productsAPI = {
   },
 
   getById: async (id) => {
-    const response = await api.get(`products/${id}/`);
+    const response = await api.get(`products/vendor/products/${id}/`);
     return response.data;
   },
 
@@ -50,6 +50,26 @@ export const productsAPI = {
     const response = await api.delete(`products/vendor/my-products/${id}/delete/`);
     return response.data;
   },
+  search: async (query) => {
+    const response = await api.get('products/vendor/search/', {
+      params: { q: query },
+    });
+    return response.data;
+  },
+
+  // filter: async (category) => {
+  //   const response = await api.get('products/vendor/filter/', {
+  //     params: { category },
+  //   });
+  //   return response.data;
+  // },
+
+    filter: async (filters) => {
+    console.log("Sending filters to API:", filters);
+    const response = await api.get("products/vendor/filter/", { params: filters });
+    return response.data;
+  }
+
 };
 
 

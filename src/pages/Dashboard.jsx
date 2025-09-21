@@ -2,6 +2,9 @@ import { useVendorStore } from '../store/vendorStore.jsx';
 import DashboardStatsCard from '../components/DashboardStatsCard.jsx';
 import RecentActivityList from '../components/RecentActivityList.jsx';
 
+// Will Vendor Total products Active/Inactive and many more more option = more interest
+
+
 const Dashboard = () => {
   const { vendorProfile } = useVendorStore();
 

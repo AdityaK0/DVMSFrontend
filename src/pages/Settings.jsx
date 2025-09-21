@@ -12,10 +12,36 @@ const Settings = () => {
   return (
     <div className="space-y-6">
       {/* Header */}
+      {/* <div className='flex'>
+        <div>
+        <h1 className="text-2xl font-bold text-secondary-900">Settings</h1>
+        <p className="text-secondary-600">Manage your account and preferences</p>
+       </div>
+
+       <div >
+          <img src={vendorProfile.logo} alt="" />
+       </div>
+      </div> */}
+
+      <div className='flex justify-between'>
       <div>
         <h1 className="text-2xl font-bold text-secondary-900">Settings</h1>
         <p className="text-secondary-600">Manage your account and preferences</p>
       </div>
+
+      <div>
+        {vendorProfile.logo ? (
+          <img
+            src={vendorProfile.logo_url}
+            alt="Vendor Logo"
+            className="h-18 w-18 rounded-full object-cover bg-black   shadow-xl "
+          />
+        ) : (
+          <p className="text-secondary-600">No logo available</p>
+        )}
+      </div>
+    </div>
+
 
       {/* Tabs */}
       <div className="border-b border-secondary-200">

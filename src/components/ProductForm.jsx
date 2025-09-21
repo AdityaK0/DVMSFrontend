@@ -117,28 +117,6 @@ const handleSubmit = async (e) => {
     try {
       setLoading(true);
 
-      // const productData = new FormData();
-      // productData.append("name", String(formData.name));
-      // productData.append("description", String(formData.description));
-      // productData.append("price", String(formData.price));
-      // productData.append("cost_price", String(formData.cost_price));
-      // productData.append("stock_quantity", String(formData.stock_quantity));
-      // productData.append("min_stock_level", String(formData.min_stock_level));
-      // productData.append("sku", String(formData.sku));
-
-      // // booleans → string "true"/"false"
-      // productData.append("is_active", formData.is_active ? "true" : "false");
-      // productData.append("is_featured", formData.is_featured ? "true" : "false");
-
-      // // category → must be ID, not name
-      // productData.append("category", String(formData.category_id));
-
-      // // multiple images
-      // formData.uploaded_images.forEach((file) => {
-      //   productData.append("uploaded_images", file);
-      // });
-
-
       const productData = new FormData();
       
       // Append all product fields
@@ -177,6 +155,10 @@ const handleSubmit = async (e) => {
         result = await productsAPI.update(id, productData);
       } else {
         result = await productsAPI.create(productData);
+      }
+      if (result) {
+        // Redirect to ProductList and pass success message
+        navigate('/vendor/products', { state: { message: isEdit ? 'Product updated successfully!' : 'Product created successfully!' } });
       }
 
       if (onSuccess) {
@@ -421,14 +403,7 @@ const handleSubmit = async (e) => {
               >
                 <option value="">Select category</option>
                 <option value="clothing">Clothing</option>
-                <option value="electronics">Electronics</option>
-                <option value="food">Food & Beverages</option>
-                <option value="home">Home & Garden</option>
-                <option value="sports">Sports & Outdoors</option>
-                <option value="books">Books & Media</option>
-                <option value="beauty">Beauty & Health</option>
-                <option value="toys">Toys & Games</option>
-                <option value="other">Other</option>
+                <option value="electronics">Electronics</option>``
               </select>
               {errors.category && (
                 <p className="mt-1 text-sm text-red-600">{errors.category}</p>

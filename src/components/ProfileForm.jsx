@@ -121,7 +121,7 @@ const ProfileForm = () => {
                 )}
               </div>
 
-              <div>
+              {/* <div>
                 <label htmlFor="business_type" className="block text-sm font-medium text-secondary-700">
                   Business Type *
                 </label>
@@ -145,7 +145,22 @@ const ProfileForm = () => {
                 {errors.business_type && (
                   <p className="mt-1 text-sm text-red-600">{errors.business_type}</p>
                 )}
+              </div> */}
+
+              <div>
+                <label htmlFor="business_type" className="block text-sm font-medium text-secondary-700">
+                  Business Type
+                </label>
+                <input
+                  type="text"
+                  id="business_type"
+                  name="business_type"
+                  value={formData.business_type.charAt(0).toUpperCase() + formData.business_type.slice(1)}
+                  disabled
+                  className="input-field mt-1 bg-gray-100 cursor-not-allowed"
+                />
               </div>
+
             </div>
 
             <div>

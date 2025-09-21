@@ -35,32 +35,77 @@ export const useAuthStore = create(
       vendor_profile:null,
 
       // Actions
+      // login: async (credentials) => {
+      //   set({ isLoading: true, error: null });
+      //   try {
+      //     const response = await authAPI.login(credentials);
+      //     set({
+      //       user: response.user,
+      //       token: response.access,
+      //       accessToken: response.access,
+      //       refreshToken: response.refresh,
+      //       isLoading: false,
+      //       error: null,
+
+      //       vendor_profile:response.user.vendor_profile,
+      //     });
+
+      //     localStorage.setItem("authToken", response.access);
+      //     localStorage.setItem("refreshToken", response.refresh);
+      //     useVendorStore.getState().setVendorProfile(response.user.vendor_profile);
+
+
+      //     toast.success("Login successful 🎉");   // ✅ success toast
+      //     return response;
+      //   } catch (error) {
+      //     const msg = extractErrorMessage(error); 
+      //     set({ isLoading: false, error: msg });
+      //     toast.error(msg);                       // ✅ error toast
+      //     throw error;
+      //   }
+      // },
+
       login: async (credentials) => {
         set({ isLoading: true, error: null });
+
         try {
           const response = await authAPI.login(credentials);
+
+          const user = response.user;
+          const vendorProfileRaw = user.vendor_profile;
+          const addressDetails = user.addresses?.[0] || null;
+
+          // 👇 Merge address into vendor_profile (if available)
+          const enrichedVendorProfile = {
+            ...vendorProfileRaw,
+            address_details: addressDetails,
+          };
+
+          // ✅ Set auth store
           set({
-            user: response.user,
+            user: user,
             token: response.access,
             accessToken: response.access,
             refreshToken: response.refresh,
+            vendor_profile: enrichedVendorProfile,
             isLoading: false,
             error: null,
-
-            vendor_profile:response.user.vendor_profile,
           });
 
+          // ✅ Set vendor store
+          useVendorStore.getState().setVendorProfile(enrichedVendorProfile);
+
+          // ✅ Set local storage
           localStorage.setItem("authToken", response.access);
           localStorage.setItem("refreshToken", response.refresh);
-          useVendorStore.getState().setVendorProfile(response.user.vendor_profile);
 
-
-          toast.success("Login successful 🎉");   // ✅ success toast
+          toast.success("Login successful 🎉");
           return response;
+
         } catch (error) {
-          const msg = extractErrorMessage(error); 
+          const msg = extractErrorMessage(error);
           set({ isLoading: false, error: msg });
-          toast.error(msg);                       // ✅ error toast
+          toast.error(msg);
           throw error;
         }
       },

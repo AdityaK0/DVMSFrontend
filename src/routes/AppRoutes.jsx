@@ -14,6 +14,7 @@ import Signup from '../pages/Signup.jsx';
 import Onboarding from '../pages/Onboarding.jsx';
 import Dashboard from '../pages/Dashboard.jsx';
 import Products from '../pages/Products.jsx';
+import ProductEdit from '../components/ProductEdit.jsx';
 import NewProduct from '../pages/NewProduct.jsx';
 import Customers from '../pages/Customers.jsx';
 import Events from '../pages/Events.jsx';
@@ -50,6 +51,7 @@ const AppRoutes = () => {
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="products" element={<Products />} />
         <Route path="products/new" element={<NewProduct />} />
+        <Route path="/vendor/products/:id/edit" element={<ProductEdit />} />
         <Route path="customers" element={<Customers />} />
         <Route path="events" element={<Events />} />
         <Route path="events/new" element={<NewEvent />} />
