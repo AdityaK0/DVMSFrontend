@@ -12,7 +12,7 @@ export const productsAPI = {
     return response.data;
   },
 
-  getCategories: async () => {
+  getVendorCategories: async () => {
     const response = await api.get('products/vendor/my-categories/');
     return response.data;
   },
@@ -21,10 +21,15 @@ export const productsAPI = {
     const response = await api.get(`vendor/${vendorId}/my-products/`, { params });
     return response.data;
   },
-  getVendorCategories: async () => {
-    const response = await api.get('categories/vendor/');
+  // getCategories: async () => {
+  //   const response = await api.get('categories/vendor/');
+  //   return response.data;
+  // },
+  createVendorCategories: async (categoryData)=>{
+    const response = await api.post('products/vendor/my-categories/',categoryData);
     return response.data;
   },
+
 
   // Vendor endpoints (authenticated)
   getVendorProducts: async (params = {}) => {

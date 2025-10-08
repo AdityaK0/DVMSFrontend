@@ -3,6 +3,7 @@ import ProfileForm from '../components/ProfileForm.jsx';
 import PreferencesForm from '../components/PreferencesForm.jsx';
 import { useAuthStore } from '../store/authStore';
 import { useVendorStore } from '../store/vendorStore';
+import CategoryList from '../components/CategoryList.jsx';
 
 const Settings = () => {
   const user = useAuthStore((state) => state.user);
@@ -66,12 +67,25 @@ const Settings = () => {
           >
             Preferences
           </button>
+          <button
+            onClick={() => setActiveTab('categories')}
+            className={`py-2 px-1 border-b-2 font-medium text-sm ${
+              activeTab === 'categories'
+                ? 'border-primary-500 text-primary-600'
+                : 'border-transparent text-secondary-500 hover:text-secondary-700 hover:border-secondary-300'
+            }`}
+          >
+            Categories
+          </button>
         </nav>
       </div>
 
       {/* Tab Content */}
       {activeTab === 'profile' && <ProfileForm user={user} vendorProfile={vendorProfile} />}
       {activeTab === 'preferences' && <PreferencesForm />}
+      {activeTab === 'categories' && <CategoryList />}
+
+
     </div>
   );
 };

@@ -31,7 +31,7 @@ const ProductForm = () => {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const data = await productsAPI.getCategories(); 
+        const data = await productsAPI.getVendorCategories(); 
         setCategories(data);
       } catch (err) {
         console.error("Failed to fetch categories:", err);
